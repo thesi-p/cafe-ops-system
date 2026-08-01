@@ -1,0 +1,89 @@
+/* Settings page */
+.settings-page { display: flex; flex-direction: column; gap: 20px; }
+.settings-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.settings-chips {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.settings-chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 80px;
+}
+.settings-chip.green { border-color: rgba(34,197,94,0.2);  background: rgba(34,197,94,0.06);  }
+.settings-chip.red   { border-color: rgba(239,68,68,0.2);  background: rgba(239,68,68,0.06);  }
+.chip-val  { font-size: 22px; font-weight: 800; color: var(--text); }
+.chip-label{ font-size: 11px; color: var(--text-3); font-weight: 500; }
+.settings-chip.green .chip-val { color: var(--green); }
+.settings-chip.red   .chip-val { color: var(--red);   }
+
+.settings-filters {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.settings-table-card { overflow: hidden; }
+
+/* Status toggle */
+.status-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid;
+  transition: all var(--transition);
+  background: none;
+}
+.status-toggle.on  { color: var(--green); border-color: rgba(34,197,94,0.3);  background: rgba(34,197,94,0.1);  }
+.status-toggle.off { color: var(--red);   border-color: rgba(239,68,68,0.3);  background: rgba(239,68,68,0.1);  }
+.status-toggle:hover { opacity: 0.8; transform: scale(0.97); }
+.toggle-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+}
+.status-toggle.on  .toggle-dot { background: var(--green); }
+.status-toggle.off .toggle-dot { background: var(--red);   }
+
+/* Emoji picker */
+.emoji-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.emoji-opt {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  font-size: 18px;
+  border: 1px solid transparent;
+  background: var(--surface);
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.emoji-opt:hover { background: var(--surface-2); border-color: var(--border); }
+.emoji-opt.active { border-color: var(--accent); background: var(--accent-soft); box-shadow: 0 0 8px var(--accent-glow); }
