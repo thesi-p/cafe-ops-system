@@ -40,7 +40,7 @@ function CustomerModal({ customer, onSave, onClose }) {
             {!isNew && (
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 14 }}>
                 <div className="form-group">
-                  <label className="form-label">Total Purchases (₹)</label>
+                  <label className="form-label">Total Purchases (LKR)</label>
                   <input className="form-input" type="number" value={form.totalPurchases} onChange={e => set('totalPurchases', parseFloat(e.target.value) || 0)} />
                 </div>
                 <div className="form-group">
@@ -48,7 +48,7 @@ function CustomerModal({ customer, onSave, onClose }) {
                   <input className="form-input" type="number" value={form.visits} onChange={e => set('visits', parseInt(e.target.value) || 0)} />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Balance (₹)</label>
+                  <label className="form-label">Balance (LKR)</label>
                   <input className="form-input" type="number" value={form.balance} onChange={e => set('balance', parseFloat(e.target.value) || 0)} />
                 </div>
               </div>
@@ -157,11 +157,11 @@ export default function Customer() {
                   <span className="badge badge-blue">{c.visits} visits</span>
                 </td>
                 <td style={{ color: 'var(--green)', fontWeight: 700 }}>
-                  ₹{c.totalPurchases.toLocaleString('en-IN')}
+                  LKR{c.totalPurchases.toLocaleString('en-IN')}
                 </td>
                 <td>
                   <span className={`badge ${c.balance > 0 ? 'badge-amber' : c.balance < 0 ? 'badge-red' : 'badge-green'}`}>
-                    {c.balance > 0 ? `+₹${c.balance}` : c.balance < 0 ? `-₹${Math.abs(c.balance)}` : 'Settled'}
+                    {c.balance > 0 ? `+LKR${c.balance}` : c.balance < 0 ? `-LKR${Math.abs(c.balance)}` : 'Settled'}
                   </span>
                 </td>
                 <td>

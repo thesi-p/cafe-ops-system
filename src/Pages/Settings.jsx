@@ -49,7 +49,7 @@ function ProductModal({ product, onSave, onClose }) {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
               <div className="form-group">
-                <label className="form-label">Price (₹) *</label>
+                <label className="form-label">Price (LKR) *</label>
                 <input id="prod-price" className="form-input" type="number" min="1" value={form.price} onChange={e => set('price', e.target.value)} placeholder="e.g. 150" required />
               </div>
               <div className="form-group">
@@ -110,7 +110,7 @@ function ProductRow({ product, onEdit, onDelete, onToggle }) {
           product.category === 'Desserts' ? 'badge-purple' : 'badge-cyan'
         }`}>{product.category}</span>
       </td>
-      <td style={{ color: 'var(--accent)', fontWeight: 700 }}>₹{product.price}</td>
+      <td style={{ color: 'var(--accent)', fontWeight: 700 }}>LKR{product.price}</td>
       <td>
         <button
           id={`toggle-${product.id}`}

@@ -46,7 +46,7 @@
 .cat-tab:hover  { background: var(--surface-2); color: var(--text); }
 .cat-tab.active {
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #1a0f00;
+  color: #ffffff;
   border-color: transparent;
   box-shadow: 0 0 14px var(--accent-glow);
 }

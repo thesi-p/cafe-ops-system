@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { toast } from '../components/Toast';
 import './Order.css';
@@ -7,10 +7,73 @@ const CATEGORY_TABS = ['All', 'Coffee', 'Tea', 'Smoothies', 'Desserts', 'Snacks'
 
 // ─── Print receipt (opens native print dialog) ─────────────────────────────────
 function printReceipt(order) {
-  const el = document.getElementById('print-receipt');
-  if (!el) return;
-  el.innerHTML = buildReceiptHTML(order);
-  window.print();
+  const receiptHtml = `<!doctype html>
+    <html>
+      <head>
+        <meta charset="utf-8" />
+        <title>Receipt ${order.orderNo}</title>
+        <style>
+          body { margin: 0; padding: 24px; font-family: 'Courier New', monospace; color: #000; }
+          h1, h2, h3, h4, h5, h6 { margin: 0; }
+          table { width: 100%; border-collapse: collapse; font-size: 12px; }
+          th, td { padding: 6px 0; }
+          td { vertical-align: top; }
+          .line { display: flex; justify-content: space-between; margin-top: 8px; }
+          .total { font-weight: bold; font-size: 14px; margin-top: 8px; }
+          hr { border: none; border-top: 1px solid #000; margin: 12px 0; }
+          .footer { text-align: center; font-size: 11px; margin-top: 12px; }
+        </style>
+      </head>
+      <body>${buildReceiptHTML(order)}</body>
+    </html>`;
+
+  const printWindow = window.open('', '_blank', 'width=600,height=800');
+  if (printWindow) {
+    printWindow.document.open();
+    printWindow.document.write(receiptHtml);
+    printWindow.document.close();
+    printWindow.focus();
+    const printAndClose = () => {
+      try {
+        printWindow.print();
+      } catch (err) {
+        console.error(err);
+      }
+      printWindow.close();
+    };
+    printWindow.onload = printAndClose;
+    setTimeout(printAndClose, 500);
+    return;
+  }
+
+  const iframe = document.createElement('iframe');
+  iframe.style.position = 'fixed';
+  iframe.style.right = '0';
+  iframe.style.bottom = '0';
+  iframe.style.width = '0';
+  iframe.style.height = '0';
+  iframe.style.border = '0';
+  document.body.appendChild(iframe);
+
+  const doc = iframe.contentWindow?.document;
+  if (!doc) {
+    document.body.removeChild(iframe);
+    toast('Unable to open print window', 'error');
+    return;
+  }
+
+  doc.open();
+  doc.write(receiptHtml);
+  doc.close();
+  iframe.contentWindow.focus();
+  setTimeout(() => {
+    try {
+      iframe.contentWindow.print();
+    } catch (err) {
+      console.error(err);
+    }
+    document.body.removeChild(iframe);
+  }, 500);
 }
 
 function buildReceiptHTML({ items, subtotal, discount, total, payment, paidAmount, balance, orderNo, time }) {
@@ -119,7 +182,6 @@ export default function Order() {
   const [paidAmount, setPaidAmount]   = useState('');
   const [payMethod, setPayMethod]     = useState('Cash');
   const [lastOrder, setLastOrder]     = useState(null);
-  const printRef = useRef(null);
 
   // Filter products
   const visible = products.filter(p => {
@@ -359,8 +421,6 @@ export default function Order() {
         )}
       </div>
 
-      {/* Hidden print target */}
-      <div id="print-receipt" ref={printRef} style={{ display: 'none' }} />
     </div>
   );
 }
