@@ -6,28 +6,28 @@
 
 /* ── CSS Custom Properties ────────────────────────────────── */
 :root {
-  --bg:          #0f1117;
-  --bg-2:        #161b27;
-  --bg-3:        #1e2538;
-  --surface:     #1e2538;
-  --surface-2:   #252d40;
-  --border:      rgba(255,255,255,0.07);
-  --border-hover:rgba(255,255,255,0.14);
+  --bg:          #ebebeb;
+  --bg-2:        #e7e7e7;
+  --bg-3:        #c5c4c3;
+  --surface:     #ffffff;
+  --surface-2:   #f5ede3;
+  --border:      rgba(115,84,62,0.12);
+  --border-hover:rgba(115,84,62,0.18);
 
-  --accent:      #f5a623;
-  --accent-2:    #e8902a;
-  --accent-glow: rgba(245,166,35,0.18);
-  --accent-soft: rgba(245,166,35,0.10);
+  --accent:      #9a6b43;
+  --accent-2:    #7b4f31;
+  --accent-glow: rgba(154,107,67,0.18);
+  --accent-soft: rgba(154,107,67,0.10);
 
-  --green:  #22c55e;
-  --red:    #ef4444;
-  --blue:   #3b82f6;
-  --purple: #a855f7;
-  --cyan:   #06b6d4;
+  --green:  #2f855a;
+  --red:    #c05621;
+  --blue:   #2563eb;
+  --purple: #805ad5;
+  --cyan:   #319795;
 
-  --text:        #f0f4ff;
-  --text-2:      #9ba3c0;
-  --text-3:      #5c647e;
+  --text:        #3f2d20;
+  --text-2:      #6f5844;
+  --text-3:      #987c65;
 
   --sidebar-w:   240px;
   --sidebar-collapsed: 72px;
@@ -104,7 +104,7 @@ ul, ol { list-style: none; }
 }
 .btn-primary {
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #1a0f00;
+  color: #ffffff;
   box-shadow: 0 0 20px var(--accent-glow);
 }
 .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 24px var(--accent-glow); }
@@ -298,6 +298,7 @@ ul, ol { list-style: none; }
   body * { visibility: hidden !important; }
   #print-receipt, #print-receipt * { visibility: visible !important; }
   #print-receipt {
+    display: block !important;
     position: fixed !important;
     inset: 0 !important;
     background: #fff !important;
