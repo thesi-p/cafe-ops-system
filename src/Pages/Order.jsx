@@ -5,7 +5,7 @@ import './Order.css';
 
 const CATEGORY_TABS = ['All', 'Coffee', 'Tea', 'Smoothies', 'Desserts', 'Snacks'];
 
-// ─── Print receipt (opens native print dialog) ─────────────────────────────────
+// ─── Print receipt (opens native print dialog)
 function printReceipt(order) {
   const receiptHtml = `<!doctype html>
     <html>
