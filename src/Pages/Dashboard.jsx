@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import Sidebar    from '../components/Sidebar';
 import Topbar     from '../components/Topbar';
 import Overview   from './Overview';
@@ -14,17 +14,23 @@ const PAGES = {
 };
 
 export default function Dashboard() {
-  const [page, setPage] = useState('overview');
-  const PageComponent = PAGES[page] || Overview;
+  const navigate = useNavigate();
+  const { page = 'overview' } = useParams();
+  const currentPage = Object.hasOwn(PAGES, page) ? page : 'overview';
+  const PageComponent = PAGES[currentPage] || Overview;
+
+  const handleNavigate = (nextPage) => {
+    navigate(`/${nextPage}`);
+  };
 
   return (
     <div className="app-shell">
-      <Sidebar active={page} onNavigate={setPage} />
+      <Sidebar active={currentPage} onNavigate={handleNavigate} />
       <div className="main-area">
-        <Topbar page={page} />
+        <Topbar page={currentPage} />
         <main
           className="page-content"
-          style={page === 'order' ? { overflow: 'hidden', padding: '20px 24px', display: 'flex', flexDirection: 'column' } : {}}
+          style={currentPage === 'order' ? { overflow: 'hidden', padding: '20px 24px', display: 'flex', flexDirection: 'column' } : {}}
         >
           <PageComponent />
         </main>

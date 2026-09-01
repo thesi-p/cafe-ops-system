@@ -81,9 +81,9 @@
 }
 .nav-item:hover { background: var(--surface-2); color: var(--text); }
 .nav-item.active {
-  background: linear-gradient(135deg, rgba(245,166,35,0.18), rgba(245,166,35,0.08));
-  color: var(--accent);
-  border: 1px solid rgba(245,166,35,0.15);
+  background: rgba(255,255,255,0.18);
+  color: var(--accent-2);
+  border: 1px solid rgba(255,255,255,0.22);
 }
 .nav-item.active::before {
   content: '';
@@ -192,7 +192,7 @@
 .topbar-avatar {
   width: 36px; height: 36px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--purple));
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
   display: flex;
   align-items: center;
   justify-content: center;
